@@ -1,0 +1,17 @@
+ldp <- read.table('depth.ldepth.mean', header = TRUE,  sep = '	',  stringsAsFactors = FALSE)
+idp <- read.table('depth.idepth', header = TRUE,  sep = '	',  stringsAsFactors = FALSE)
+lmiss <- read.table('missing.lmiss', header = TRUE,  sep = '	',  stringsAsFactors = FALSE)
+imiss <- read.table('missing.imiss', header = TRUE,  sep = '	',  stringsAsFactors = FALSE)
+frq <- read.table('frequency.frq', header = TRUE,  sep = '	',  stringsAsFactors = FALSE, row.names=NULL)
+
+dens_ldp <- density(ldp$MEAN_DEPTH)
+dens_idp <- density(na.omit(idp$MEAN_DEPTH))
+dens_lmiss <- density(lmiss$F_MISS)
+dens_imiss <- density(imiss$F_MISS)
+dens_frq <- density(frq$FREQ)
+
+plot(dens_ldp, main='Per site depth', xlim=c(0, 50))
+plot(dens_idp, main='Per individual depth', xlim=c(0, 50))
+plot(dens_lmiss, main='Per site missingness')
+plot(dens_imiss, main='Per individual missingness')
+plot(dens_frq, main='Allele frequency')
